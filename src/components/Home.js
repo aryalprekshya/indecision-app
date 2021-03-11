@@ -95,17 +95,19 @@ class Home extends React.Component {
             handlePick={this.handlePick}
             hasOptions={this.state.options.length > 0}
           />
-          <Options
-            options={this.state.options}
-            handleDeleteOptions={this.handleDeleteOptions}
-            handleDeleteOption={this.handleDeleteOption}
-          />
-          <AddOption handleAddOption={this.handleAddOption} />
-          <OptionModal
-            selectedOption={this.state.selectedOption}
-            clearSelectedOption={this.clearSelectedOption}
-          />
+          <div className="widget">
+            <Options
+              options={this.state.options}
+              handleDeleteOptions={this.handleDeleteOptions}
+              handleDeleteOption={this.handleDeleteOption}
+            />
+            <AddOption handleAddOption={this.handleAddOption} />
+          </div>
         </div>
+        <OptionModal
+          selectedOption={this.state.selectedOption}
+          clearSelectedOption={this.clearSelectedOption}
+        />
       </div>
     );
   }
