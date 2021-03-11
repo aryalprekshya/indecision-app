@@ -3,6 +3,7 @@ import Header from "./Header";
 import Action from "./Action";
 import Options from "./Options";
 import AddOption from "./AddOption";
+import OptionModal from "./OptionModal";
 
 class Home extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Home extends React.Component {
     this.handleDeleteOption = this.handleDeleteOption.bind(this);
     this.state = {
       options: [],
+      selectedOption: undefined,
     };
   }
 
@@ -57,9 +59,17 @@ class Home extends React.Component {
   // randomly pick an option and alert it
   handlePick() {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.option[randomNum];
-    alert(option);
+    const option = this.state.options[randomNum];
+    this.setState(() => ({
+      selectedOption: option,
+    }));
   }
+
+  clearSelectedOption = () => {
+    this.setState(() => ({
+      selectedOption: undefined,
+    }));
+  };
 
   handleAddOption(option) {
     if (!option) {
@@ -90,6 +100,10 @@ class Home extends React.Component {
           handleDeleteOption={this.handleDeleteOption}
         />
         <AddOption handleAddOption={this.handleAddOption} />
+        <OptionModal
+          selectedOption={this.state.selectedOption}
+          clearSelectedOption={this.clearSelectedOption}
+        />
       </div>
     );
   }
